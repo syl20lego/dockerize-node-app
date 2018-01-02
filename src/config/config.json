@@ -1,0 +1,11 @@
+{
+  "test": {
+    "production": false
+  },
+  "local": {
+    "production": false
+  },
+  "production": {
+    "production": true
+  }
+}
