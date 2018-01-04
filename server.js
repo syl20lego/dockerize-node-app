@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-
+const setting = require('./settings');
 const Config = require('./src/config');
 const Main = require('./src');
 
@@ -43,7 +43,7 @@ const setupApp = () => {
 };
 
 const createServer = ({app, main}) => {
-    const port = normalizePort(process.env.PORT || '3000');
+    const port = normalizePort(process.env.PORT || setting.DEFAULT_PORT);
 
     const server = app.listen(port, () => {
         console.log(`Running on port ${port}`);
