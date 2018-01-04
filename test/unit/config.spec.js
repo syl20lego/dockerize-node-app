@@ -2,7 +2,7 @@
 const Config = require('../../src/config');
 
 describe('test suite for config', () => {
-    ['test', 'local'].forEach((environment) => {
+    ['test', 'local', 'qa', 'production'].forEach((environment) => {
         it('should have environment', () => {
             const config = Config(environment);
             expect(config.environment).toBe(environment);
@@ -10,7 +10,9 @@ describe('test suite for config', () => {
         it('should have production value set', () => {
             const production = {
                 test: false,
-                local: false
+                local: false,
+                qa: false,
+                production: true
             };
             const config = Config(environment);
             expect(config.production).toBe(production[environment]);

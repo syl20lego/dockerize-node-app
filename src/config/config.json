@@ -5,6 +5,9 @@
   "local": {
     "production": false
   },
+  "qa": {
+    "production": false
+  },
   "production": {
     "production": true
   }
