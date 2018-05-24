@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-const setting = require('./settings');
+const settings = require('./settings');
 const Config = require('./src/config');
 const Main = require('./src');
 
@@ -43,34 +43,14 @@ const setupApp = () => {
 };
 
 const createServer = ({app, main}) => {
-    const port = normalizePort(process.env.PORT || setting.DEFAULT_PORT);
-
-    const server = app.listen(port, () => {
-        console.log(`Running on port ${port}`);
+    const server = app.listen(settings.PORT, settings.IP, () => {
+        console.log(`Running on ${settings.IP}:${settings.PORT}`);
         main.start();
     });
     server.on('error', onError);
     return server;
 };
 
-/**
- * Normalize a port into a number, string, or false.
- */
-
-const normalizePort = (val) => {
-    const port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
-};
 
 const notFoundHandlers = ({app}) => {
     // catch 404 and forward to error handler
